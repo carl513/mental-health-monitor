@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心理健康监测</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>&#x1F9E0; 心理健康预警监测</h1>
+    <div class="header-right">
+      <span id="timerDisplay" class="timer-badge">00:00</span>
+      <span id="connStatus" class="status-badge">连接中...</span>
+      
+    </div>
+  </header>
+
+  <main>
+    <div class="left-column">
+      <section class="video-panel">
+        <div class="video-wrapper">
+          <img id="videoFeed" src="/video" alt="摄像头画面">
+        </div>
+        <div class="control-bar">
+          <button id="btnStart" class="btn btn-primary" disabled>&#x25B6; 开始采集分析</button>
+          <button id="btnReset" class="btn btn-outline" disabled>重置数据</button>
+        </div>
+      </section>
+
+      <div id="progressArea" class="progress-area" style="display:none">
+        <div class="progress-bar-wrap">
+          <div id="progressBar" class="progress-bar" style="width:0%"></div>
+        </div>
+        <span id="progressText" class="progress-text">采集中 0%</span>
+      </div>
+
+      <div class="guidance-card" id="guidanceCard">
+        <div class="guidance-title">&#x1F9E0; 心理疏导建议</div>
+        <div id="guidanceContent"><div class="guidance-placeholder">点击"开始采集分析"后，此处将显示个性化心理疏导建议</div></div>
+      </div>
+    </div>
+
+    <section class="analysis-panel">
+      <div class="overall-card">
+        <div class="distress-ring">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" class="ring-bg"/>
+            <circle id="distressRing" cx="60" cy="60" r="52" class="ring-fg"
+                    stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+          </svg>
+          <div class="ring-label">
+            <span id="distressVal">--</span>
+            <small>/ 5</small>
+          </div>
+        </div>
+        <div class="overall-info">
+          <span class="concern-label" id="concernLevel">--</span>
+          <span class="analysis-meta" id="metaInfo">点击"开始采集分析"</span>
+        </div>
+      </div>
+
+      <div class="dimensions" id="dimensions"></div>
+
+      <div class="notes-card" id="notesCard" style="display:none">
+        <div id="errorBanner" class="error-banner" style="display:none"></div>
+        <div class="note-row"><label>面部表情</label><span id="exprText">--</span></div>
+        <div class="note-row"><label>姿态</label><span id="postureText">--</span></div>
+        <div class="note-row" id="transcriptRow" style="display:none"><label>转写</label><span id="transcriptText"></span></div>
+        <div class="note-row recommend" id="recRow" style="display:none">
+          <label>建议</label><span id="recText"></span>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <canvas id="trendChart" height="120"></canvas>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
